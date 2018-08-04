@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'react-emotion/macro';
-import { moveDate } from '../utils';
 
 const Container = styled.div`
   display: grid;
@@ -11,40 +10,33 @@ const Number = styled.strong`
   font-size: 3rem;
 `;
 
-const getStreakCount = (today, ratings) => {
-  let todayRating = ratings[today] ? ratings[today].rating : 0;
-  let prevDay = moveDate(today, -1);
-  let prevRating = ratings[prevDay] ? ratings[prevDay].rating : 0;
-  if (todayRating < prevRating) return todayRating > 0 ? 1 : 0;
+const ONE_DAY = 86400000;
 
-  let streak = todayRating > 0 && todayRating >= prevRating ? 1 : 0;
-  while (prevRating > 0 && todayRating >= prevRating) {
-    streak += 1;
-    today = moveDate(today, -1);
-    todayRating = ratings[today] ? ratings[today].rating : 0;
-    prevDay = moveDate(today, -1);
-    prevRating = ratings[prevDay] ? ratings[prevDay].rating : 0;
-  }
-  console.log({
-    today: new Date(today),
-    todayRating,
-    prevDay: new Date(prevDay),
-    prevRating,
-  });
-  return streak;
+// subtracts 1 as meat days don't count towards streaks
+const ratingsGetter = ratings => day =>
+  ratings[day] ? ratings[day].rating - 1 : 0;
+
+const getStreak = (today, ratings) => {
+  const getRating = ratingsGetter(ratings);
+  const recurse = (currentDay, currentStreak) => {
+    const yesterday = currentDay - ONE_DAY;
+    const yesterdayRating = getRating(yesterday);
+    const todayRating = getRating(currentDay);
+
+    // break if there's no rating for the previous day
+    // or today has been rated and is lower than the previous day
+    if (!yesterdayRating || (todayRating && todayRating < yesterdayRating)) {
+      return currentStreak;
+    }
+    return recurse(yesterday, currentStreak + 1);
+  };
+  // if today has been rated the minimum streak is 1
+  const initialStreak = getRating(today) ? 1 : 0;
+  return recurse(today, initialStreak);
 };
 
 const Streak = ({ today, ratings }) => {
-  const streak = getStreakCount(today, ratings);
-  // const prevDay = moveDate(today, -1);
-  // const prevRating = ratings[prevDay] ? ratings[prevDay].rating : 0;
-  // const streakStartDate = new Date(streakStart);
-  // console.log({
-  //   today: new Date(today),
-  //   streakStart: new Date(streakStart),
-  //   difference: new Date(today - streakStart).getDate(),
-  // });
-  // const streak = new Date(today - streakStart).getDate();
+  const streak = getStreak(today, ratings);
   return (
     <Container>
       <span>

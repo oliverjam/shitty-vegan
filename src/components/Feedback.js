@@ -33,7 +33,7 @@ const getMessage = rating => {
 
 class Feedback extends Component {
   render() {
-    const { ratings, streakStart } = this.props;
+    const { ratings } = this.props;
     const now = new Date();
     const today = new Date(
       Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())
@@ -43,7 +43,7 @@ class Feedback extends Component {
       <Container>
         <Message>{getMessage(rating)}</Message>
         <Level ratings={ratings} />
-        <Streak today={today} ratings={ratings} streakStart={streakStart} />
+        <Streak today={today} ratings={ratings} />
       </Container>
     );
   }
