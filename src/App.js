@@ -14,6 +14,7 @@ class App extends Component {
     super(props);
     const now = new Date();
     this.state = {
+      user: null,
       ratings: {},
       today: new Date(
         Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())
@@ -23,6 +24,10 @@ class App extends Component {
 
   componentDidMount() {
     netlifyIdentity.init();
+    const user = netlifyIdentity.currentUser();
+    if (user) this.setState({ user });
+    netlifyIdentity.on('login', user => this.setState({ user }));
+    netlifyIdentity.on('logout', user => this.setState({ user: null }));
     const state = JSON.parse(window.localStorage.getItem('shitty-ratings'));
     if (state) return this.setState(state);
   }
@@ -35,9 +40,21 @@ class App extends Component {
       window.localStorage.setItem('shitty-ratings', JSON.stringify(this.state));
     });
   };
+
+  getHeaders = () => {
+    const headers = { 'Content-Type': 'application/json' };
+    if (netlifyIdentity.currentUser()) {
+      return netlifyIdentity
+        .currentUser()
+        .jwt()
+        .then(token => {
+          console.log({ ...headers, Authorization: `Bearer ${token}` });
+          return { ...headers, Authorization: `Bearer ${token}` };
+        });
+    }
+  };
   render() {
-    const { today, ratings } = this.state;
-    const user = netlifyIdentity.currentUser();
+    const { user, today, ratings } = this.state;
     return (
       <ThemeProvider theme={theme}>
         <Layout>
@@ -49,6 +66,21 @@ class App extends Component {
                 setRating={this.setRating}
               />
               <Feedback today={today} ratings={ratings} />
+              <button
+                onClick={() =>
+                  this.getHeaders().then(headers =>
+                    fetch('/.netlify/functions/hello', {
+                      headers,
+                      method: 'POST',
+                      body: { test: 'test' },
+                    })
+                      .then(res => res.json())
+                      .then(console.log)
+                  )
+                }
+              >
+                Hello
+              </button>
             </React.Fragment>
           ) : (
             <button onClick={() => netlifyIdentity.open()}>Log in</button>
