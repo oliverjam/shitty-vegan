@@ -51,7 +51,7 @@ class App extends Component {
               <Feedback today={today} ratings={ratings} />
             </React.Fragment>
           ) : (
-            <button onClick={netlifyIdentity.open()}>Log in</button>
+            <button onClick={() => netlifyIdentity.open()}>Log in</button>
           )}
         </Layout>
       </ThemeProvider>
