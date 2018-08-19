@@ -11,12 +11,19 @@ globalStyles(theme);
 class App extends Component {
   constructor(props) {
     super(props);
+    const now = new Date();
     this.state = {
       ratings: {},
+      today: new Date(
+        Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())
+      ).getTime(),
     };
   }
 
   componentDidMount() {
+    fetch('/.netlify/functions/hello')
+      .then(res => res.json())
+      .then(console.log);
     const state = JSON.parse(window.localStorage.getItem('shitty-ratings'));
     if (state) return this.setState(state);
   }
@@ -30,12 +37,16 @@ class App extends Component {
     });
   };
   render() {
-    const { ratings } = this.state;
+    const { today, ratings } = this.state;
     return (
       <ThemeProvider theme={theme}>
         <Layout>
-          <Calendar ratings={ratings} setRating={this.setRating} />
-          <Feedback ratings={ratings} />
+          <Calendar
+            today={today}
+            ratings={ratings}
+            setRating={this.setRating}
+          />
+          <Feedback today={today} ratings={ratings} />
         </Layout>
       </ThemeProvider>
     );
