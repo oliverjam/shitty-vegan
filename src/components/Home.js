@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Layout } from './styled/Layout';
 import Calendar from './Calendar';
 import Feedback from './Feedback';
 // import { Layout } from './components/styled/Layout';
@@ -33,7 +34,7 @@ class Home extends Component {
     const { today, ratings } = this.state;
     // const { user } = this.props;
     return (
-      <React.Fragment>
+      <Layout>
         <Calendar
           today={today}
           ratings={ratings}
@@ -56,7 +57,7 @@ class Home extends Component {
         >
           Hello
         </button> */}
-      </React.Fragment>
+      </Layout>
     );
   }
 }

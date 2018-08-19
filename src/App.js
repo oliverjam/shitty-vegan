@@ -4,9 +4,10 @@ import { Router } from '@reach/router';
 import netlifyIdentity from 'netlify-identity-widget';
 
 import theme from './styles/theme';
-import { Layout } from './components/styled/Layout';
 import Home from './components/Home';
 import Settings from './components/Settings';
+
+const Login = ({ login }) => <button onClick={login}>Log in</button>;
 
 class App extends Component {
   state = {
@@ -18,19 +19,32 @@ class App extends Component {
     const user = netlifyIdentity.currentUser();
     if (user) this.setState({ user });
     netlifyIdentity.on('login', user => this.setState({ user }));
-    netlifyIdentity.on('logout', user => this.setState({ user: null }));
+    netlifyIdentity.on('logout', user => {
+      netlifyIdentity.close();
+      this.setState({ user: null });
+    });
   }
+
+  logout = () => {
+    netlifyIdentity.logout();
+  };
+
+  login = () => {
+    netlifyIdentity.open();
+  };
 
   render() {
     const { user } = this.state;
     return (
       <ThemeProvider theme={theme}>
-        <Layout>
-          <Router>
+        <Router>
+          {!user ? (
+            <Login path="/" login={this.login} />
+          ) : (
             <Home path="/" user={user} />
-            <Settings path="settings" user={user} />
-          </Router>
-        </Layout>
+          )}
+          <Settings path="settings" logout={this.logout} user={user} />
+        </Router>
       </ThemeProvider>
     );
   }

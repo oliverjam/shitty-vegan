@@ -39,7 +39,7 @@ class Calendar extends Component {
   };
 
   render() {
-    const { today, ratings, setLocation } = this.props;
+    const { today, ratings } = this.props;
     const { selectedDate } = this.state;
     return (
       <DateValue>

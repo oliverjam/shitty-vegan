@@ -1,13 +1,15 @@
 import React from 'react';
+import { Redirect } from '@reach/router';
 import styled from 'react-emotion/macro';
 import { Link } from '@reach/router';
+import { Layout } from './styled/Layout';
 import Avatar from './styled/Avatar';
 import { Toggle, TextButton, Button } from './styled/Form';
 
 const Form = styled.div`
   padding: 2rem;
   & > * + * {
-    margin-top: 2rem;
+    margin-top: 3rem;
   }
 `;
 
@@ -39,10 +41,12 @@ const Subheading = styled.h2`
 const Row = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const Settings = ({ user, logout }) => (
-  <React.Fragment>
+  <Layout>
+    {!user && <Redirect to="/" noThrow />}
     <Form>
       <h1>Settings</h1>
       <Avatar user={user} />
@@ -83,7 +87,7 @@ const Settings = ({ user, logout }) => (
     <Close>
       <Link to="/">&times;</Link>
     </Close>
-  </React.Fragment>
+  </Layout>
 );
 
 export default Settings;
