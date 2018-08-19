@@ -66,6 +66,7 @@ class App extends Component {
                 setRating={this.setRating}
               />
               <Feedback today={today} ratings={ratings} />
+              <button onClick={() => netlifyIdentity.logout()}>Log out</button>
               <button
                 onClick={() =>
                   this.getHeaders().then(headers =>
