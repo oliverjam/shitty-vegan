@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reach/router": "^1.1.1",
     "emotion": "^9.2.6",
     "emotion-theming": "^9.2.6",
     "netlify-identity-widget": "^1.4.14",

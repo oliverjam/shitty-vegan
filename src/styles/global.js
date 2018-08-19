@@ -8,6 +8,7 @@ const globalStyles = theme => injectGlobal`
   }
 
   body,
+  h1,
   h2,
   p,
   img,
@@ -22,6 +23,11 @@ const globalStyles = theme => injectGlobal`
     font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
     color: #555;
   background-color: ${theme.bgLight};
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 `;
 

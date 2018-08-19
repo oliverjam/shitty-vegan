@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import globalStyles from './styles/global';
+import theme from './styles/theme';
 // import * as serviceWorker from './serviceWorker';
+globalStyles(theme);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

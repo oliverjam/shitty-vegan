@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from '@reach/router';
 import { DateValue } from 'react-values';
 import Popover from 'react-tiny-popover';
 import {
@@ -38,7 +39,7 @@ class Calendar extends Component {
   };
 
   render() {
-    const { today, ratings } = this.props;
+    const { today, ratings, setLocation } = this.props;
     const { selectedDate } = this.state;
     return (
       <DateValue>
@@ -59,7 +60,9 @@ class Calendar extends Component {
                 <Button onClick={() => incrementMonth(1)}>
                   <Right />
                 </Button>
-                <Menu />
+                <Link to="/settings">
+                  <Menu />
+                </Link>
               </NavBar>
 
               {days.map((day, i) => {
