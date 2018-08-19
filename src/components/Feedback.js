@@ -33,11 +33,7 @@ const getMessage = rating => {
 
 class Feedback extends Component {
   render() {
-    const { ratings } = this.props;
-    const now = new Date();
-    const today = new Date(
-      Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())
-    ).getTime();
+    const { ratings, today } = this.props;
     const rating = ratings[today] ? ratings[today].rating : 0;
     return (
       <Container>

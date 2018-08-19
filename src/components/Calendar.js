@@ -38,7 +38,7 @@ class Calendar extends Component {
   };
 
   render() {
-    const { ratings } = this.props;
+    const { today, ratings } = this.props;
     const { selectedDate } = this.state;
     return (
       <DateValue>
@@ -93,7 +93,11 @@ class Calendar extends Component {
                       showStreak={showStreak}
                       onClick={this.handleClick(day.fullDate)}
                     >
-                      <DayIndicator rating={rating} showStreak={showStreak}>
+                      <DayIndicator
+                        rating={rating}
+                        showStreak={showStreak}
+                        aria-current={day.fullDate === today ? 'date' : null}
+                      >
                         {day.date}
                       </DayIndicator>
                     </Day>

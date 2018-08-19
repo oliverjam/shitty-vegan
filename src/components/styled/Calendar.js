@@ -33,8 +33,15 @@ export const DayIndicator = styled.span`
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background-color: ${getColor};
   color: ${p => (p.rating > 0 ? 'white' : 'inherit')};
+  /* hack to increase specificity */
+  &&& {
+    background-color: ${getColor};
+  }
+  &[aria-current='date'] {
+    background-color: hsl(200, 10%, 80%);
+    box-shadow: inset 0 0 5px 3px hsla(200, 10%, 50%, 0.4);
+  }
   &::before {
     content: '';
     display: ${p => (p.showStreak ? 'block' : 'none')};
