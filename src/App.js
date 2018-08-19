@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ThemeProvider } from 'emotion-theming';
+import netlifyIdentity from 'netlify-identity-widget';
 import Calendar from './components/Calendar';
 import Feedback from './components/Feedback';
 import { Layout } from './components/styled/Layout';
@@ -21,9 +22,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('/.netlify/functions/hello')
-      .then(res => res.json())
-      .then(console.log);
+    netlifyIdentity.init();
     const state = JSON.parse(window.localStorage.getItem('shitty-ratings'));
     if (state) return this.setState(state);
   }
@@ -38,15 +37,22 @@ class App extends Component {
   };
   render() {
     const { today, ratings } = this.state;
+    const user = netlifyIdentity.currentUser();
     return (
       <ThemeProvider theme={theme}>
         <Layout>
-          <Calendar
-            today={today}
-            ratings={ratings}
-            setRating={this.setRating}
-          />
-          <Feedback today={today} ratings={ratings} />
+          {user ? (
+            <React.Fragment>
+              <Calendar
+                today={today}
+                ratings={ratings}
+                setRating={this.setRating}
+              />
+              <Feedback today={today} ratings={ratings} />
+            </React.Fragment>
+          ) : (
+            <button onClick={netlifyIdentity.open()}>Log in</button>
+          )}
         </Layout>
       </ThemeProvider>
     );
