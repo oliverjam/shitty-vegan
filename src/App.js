@@ -3,7 +3,7 @@ import styled from 'react-emotion/macro';
 import { ThemeProvider } from 'emotion-theming';
 import { Router } from '@reach/router';
 import netlifyIdentity from 'netlify-identity-widget';
-
+import { Provider as SettingsProvider } from './state/settings';
 import theme from './styles/theme';
 import Login from './views/Login';
 import Home from './views/Home';
@@ -44,24 +44,26 @@ class App extends Component {
     const { user } = this.state;
     return (
       <ThemeProvider theme={theme}>
-        <Layout>
-          <Router>
-            {!user ? (
-              <Login path="/*" login={this.login} />
-            ) : (
-              [
-                <Home path="/" user={user} key="home" />,
-                <Settings
-                  path="settings"
-                  logout={this.logout}
-                  user={user}
-                  key="settings"
-                />,
-                <NotFound default key="404" />,
-              ]
-            )}
-          </Router>
-        </Layout>
+        <SettingsProvider>
+          <Layout>
+            <Router>
+              {!user ? (
+                <Login path="/*" login={this.login} />
+              ) : (
+                [
+                  <Home path="/" user={user} key="home" />,
+                  <Settings
+                    path="settings"
+                    logout={this.logout}
+                    user={user}
+                    key="settings"
+                  />,
+                  <NotFound default key="404" />,
+                ]
+              )}
+            </Router>
+          </Layout>
+        </SettingsProvider>
       </ThemeProvider>
     );
   }
