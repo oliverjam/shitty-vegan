@@ -29,6 +29,14 @@ const globalStyles = theme => injectGlobal`
     color: inherit;
     text-decoration: none;
   }
+
+  input {
+    font-size: inherit;
+    font-family: inherit;
+    border: none;
+    background: none;
+    color: inherit;
+  }
 `;
 
 export default globalStyles;

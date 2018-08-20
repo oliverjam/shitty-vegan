@@ -70,5 +70,6 @@ export const Button = styled.button`
   border-radius: 2rem;
   box-shadow: 0 2px 4px hsla(200, 10%, 40%, 0.4);
   text-transform: uppercase;
+  text-align: center;
   background-color: #fff;
 `;
