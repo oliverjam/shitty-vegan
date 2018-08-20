@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
-import { Layout } from '../components/styled/Layout';
+import styled from 'react-emotion/macro';
 import Calendar from '../components/Calendar';
 import Feedback from '../components/Feedback';
+
+const Layout = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+`;
 
 class Home extends Component {
   state = {

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'react-emotion/macro';
 import { Link } from '@reach/router';
-import { Layout } from '../components/styled/Layout';
 import Avatar from '../components/styled/Avatar';
 import { Toggle, TextButton, Button } from '../components/styled/Form';
 
@@ -57,7 +56,7 @@ const Row = styled.div`
 `;
 
 const Settings = ({ user, logout }) => (
-  <Layout>
+  <div>
     <Form>
       <h1>Settings</h1>
       <Avatar user={user} />
@@ -77,7 +76,7 @@ const Settings = ({ user, logout }) => (
             <LabelHeading>Notification time</LabelHeading>
             <span>Set when you want to be reminded</span>
           </Label>
-          <input type="text" id="notificationTime" defaultValue="9pm" />
+          <input type="time" id="notificationTime" defaultValue="21:00" />
         </Row>
       </Subsection>
       <Subsection>
@@ -115,7 +114,7 @@ const Settings = ({ user, logout }) => (
         &times;
       </Link>
     </Close>
-  </Layout>
+  </div>
 );
 
 export default Settings;
