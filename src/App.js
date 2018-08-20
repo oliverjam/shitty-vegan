@@ -7,6 +7,7 @@ import theme from './styles/theme';
 import Login from './views/Login';
 import Home from './views/Home';
 import Settings from './views/Settings';
+import NotFound from './views/NotFound';
 
 // const Login = ({ login }) => <button onClick={login}>Log in</button>;
 
@@ -43,8 +44,14 @@ class App extends Component {
             <Login path="/*" login={this.login} />
           ) : (
             [
-              <Home path="/" user={user} />,
-              <Settings path="settings" logout={this.logout} user={user} />,
+              <Home path="/" user={user} key="home" />,
+              <Settings
+                path="settings"
+                logout={this.logout}
+                user={user}
+                key="settings"
+              />,
+              <NotFound default key="404" />,
             ]
           )}
         </Router>
