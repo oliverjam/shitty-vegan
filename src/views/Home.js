@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Layout } from './styled/Layout';
-import Calendar from './Calendar';
-import Feedback from './Feedback';
-// import { Layout } from './components/styled/Layout';
+import { Layout } from '../components/styled/Layout';
+import Calendar from '../components/Calendar';
+import Feedback from '../components/Feedback';
 
 class Home extends Component {
   state = {

@@ -4,10 +4,11 @@ import { Router } from '@reach/router';
 import netlifyIdentity from 'netlify-identity-widget';
 
 import theme from './styles/theme';
-import Home from './components/Home';
-import Settings from './components/Settings';
+import Login from './views/Login';
+import Home from './views/Home';
+import Settings from './views/Settings';
 
-const Login = ({ login }) => <button onClick={login}>Log in</button>;
+// const Login = ({ login }) => <button onClick={login}>Log in</button>;
 
 class App extends Component {
   state = {
@@ -39,11 +40,13 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <Router>
           {!user ? (
-            <Login path="/" login={this.login} />
+            <Login path="/*" login={this.login} />
           ) : (
-            <Home path="/" user={user} />
+            [
+              <Home path="/" user={user} />,
+              <Settings path="settings" logout={this.logout} user={user} />,
+            ]
           )}
-          <Settings path="settings" logout={this.logout} user={user} />
         </Router>
       </ThemeProvider>
     );

@@ -1,16 +1,28 @@
 import React from 'react';
-import { Redirect } from '@reach/router';
 import styled from 'react-emotion/macro';
 import { Link } from '@reach/router';
-import { Layout } from './styled/Layout';
-import Avatar from './styled/Avatar';
-import { Toggle, TextButton, Button } from './styled/Form';
+import { Layout } from '../components/styled/Layout';
+import Avatar from '../components/styled/Avatar';
+import { Toggle, TextButton, Button } from '../components/styled/Form';
 
 const Form = styled.div`
   padding: 2rem;
   & > * + * {
-    margin-top: 3rem;
+    margin-top: 2.25rem;
   }
+`;
+
+const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  & > * + * {
+    /* margin-top: 0.5rem; */
+  }
+`;
+
+const LabelHeading = styled.span`
+  font-size: 1.25rem;
 `;
 
 const Close = styled.div`
@@ -46,7 +58,6 @@ const Row = styled.div`
 
 const Settings = ({ user, logout }) => (
   <Layout>
-    {!user && <Redirect to="/" noThrow />}
     <Form>
       <h1>Settings</h1>
       <Avatar user={user} />
@@ -55,11 +66,17 @@ const Settings = ({ user, logout }) => (
           <Subheading>Notifications</Subheading>
         </legend>
         <Row>
-          <label htmlFor="toggleNotifications">Show notifications</label>
+          <Label htmlFor="toggleNotifications">
+            <LabelHeading>Show notifications</LabelHeading>
+            <span>Daily reminders to log eating</span>
+          </Label>
           <Toggle id="toggleNotifications" />
         </Row>
         <Row>
-          <label htmlFor="notificationTime">Notification time</label>
+          <Label htmlFor="notificationTime">
+            <LabelHeading>Notification time</LabelHeading>
+            <span>Set when you want to be reminded</span>
+          </Label>
           <input type="text" id="notificationTime" defaultValue="9pm" />
         </Row>
       </Subsection>
@@ -68,15 +85,24 @@ const Settings = ({ user, logout }) => (
           <Subheading>App settings</Subheading>
         </legend>
         <Row>
-          <label htmlFor="darkMode">Dark mode</label>
+          <Label htmlFor="darkMode">
+            <LabelHeading>Dark mode</LabelHeading>
+            <span>Easy on the eyes</span>
+          </Label>
           <Toggle id="darkMode" />
         </Row>
         <Row>
-          <label htmlFor="colorBlindMode">Colour-blind mode</label>
+          <Label htmlFor="colorBlindMode">
+            <LabelHeading>Colour-blind mode</LabelHeading>
+            <span>Use icons rather than colours</span>
+          </Label>
           <Toggle id="colorBlindMode" />
         </Row>
         <Row>
-          <label htmlFor="clearData">Clear stored data</label>
+          <Label htmlFor="clearData">
+            <LabelHeading>Clear stored data</LabelHeading>
+            <span>Nuke it all</span>
+          </Label>
           <TextButton type="button" textColor="bad" id="clearData">
             Delete
           </TextButton>
@@ -85,7 +111,9 @@ const Settings = ({ user, logout }) => (
       <Button onClick={logout}>Log out</Button>
     </Form>
     <Close>
-      <Link to="/">&times;</Link>
+      <Link to="/" aria-label="Back to calendar">
+        &times;
+      </Link>
     </Close>
   </Layout>
 );
