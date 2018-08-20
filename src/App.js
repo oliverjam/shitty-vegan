@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'react-emotion/macro';
 import { ThemeProvider } from 'emotion-theming';
 import { Router } from '@reach/router';
 import netlifyIdentity from 'netlify-identity-widget';
@@ -10,6 +11,10 @@ import Settings from './views/Settings';
 import NotFound from './views/NotFound';
 
 // const Login = ({ login }) => <button onClick={login}>Log in</button>;
+const Layout = styled.div`
+  max-width: 40rem;
+  margin: 0 auto;
+`;
 
 class App extends Component {
   state = {
@@ -39,22 +44,24 @@ class App extends Component {
     const { user } = this.state;
     return (
       <ThemeProvider theme={theme}>
-        <Router>
-          {!user ? (
-            <Login path="/*" login={this.login} />
-          ) : (
-            [
-              <Home path="/" user={user} key="home" />,
-              <Settings
-                path="settings"
-                logout={this.logout}
-                user={user}
-                key="settings"
-              />,
-              <NotFound default key="404" />,
-            ]
-          )}
-        </Router>
+        <Layout>
+          <Router>
+            {!user ? (
+              <Login path="/*" login={this.login} />
+            ) : (
+              [
+                <Home path="/" user={user} key="home" />,
+                <Settings
+                  path="settings"
+                  logout={this.logout}
+                  user={user}
+                  key="settings"
+                />,
+                <NotFound default key="404" />,
+              ]
+            )}
+          </Router>
+        </Layout>
       </ThemeProvider>
     );
   }

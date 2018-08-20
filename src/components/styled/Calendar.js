@@ -2,14 +2,19 @@ import styled from 'react-emotion/macro';
 import { buttonReset } from './utils';
 
 const COLUMN_COUNT = 7;
-const DAY_SIZE = 100 / COLUMN_COUNT;
+const MOBILE_DAY_SIZE = 100 / COLUMN_COUNT; // 7 columns in 100vw window
+const DESKTOP_DAY_SIZE = 40 / 7; // 7 columns in 40rem container
 
 export const Section = styled.section`
   position: relative;
   display: grid;
-  grid-template-columns: repeat(${COLUMN_COUNT}, ${DAY_SIZE}vw);
-  grid-template-rows: 4rem repeat(6, ${DAY_SIZE}vw);
+  grid-template-columns: repeat(${COLUMN_COUNT}, ${MOBILE_DAY_SIZE}vw);
+  grid-template-rows: 4rem repeat(6, ${MOBILE_DAY_SIZE}vw);
   justify-content: center;
+  @media (min-width: 40em) {
+    grid-template-columns: repeat(${COLUMN_COUNT}, ${DESKTOP_DAY_SIZE}rem);
+    grid-template-rows: 4rem repeat(6, ${DESKTOP_DAY_SIZE}rem);
+  }
 `;
 
 export const SectionTitle = styled.h2``;
@@ -18,8 +23,9 @@ const getColor = ({ rating, theme }) => theme.ratings[rating];
 
 export const Day = styled.button`
   ${buttonReset};
-  display: grid;
-  place-items: center;
+  padding: 0;
+  display: flex;
+  justify-content: center;
   grid-column: ${({ firstDay }) => (firstDay ? `${firstDay}` : 'initial')};
   &:focus > span {
     border: 1px dashed blue;
@@ -28,12 +34,16 @@ export const Day = styled.button`
 
 export const DayIndicator = styled.span`
   position: relative;
-  width: ${DAY_SIZE * 0.66}vw;
-  height: ${DAY_SIZE * 0.66}vw;
+  width: ${MOBILE_DAY_SIZE * 0.66}vw;
+  height: ${MOBILE_DAY_SIZE * 0.66}vw;
   display: grid;
   place-items: center;
   border-radius: 50%;
   color: ${p => (p.rating > 0 ? 'white' : 'inherit')};
+  @media (min-width: 40em) {
+    width: ${DESKTOP_DAY_SIZE * 0.66}rem;
+    height: ${DESKTOP_DAY_SIZE * 0.66}rem;
+  }
   /* hack to increase specificity */
   &&& {
     background-color: ${getColor};
@@ -50,9 +60,12 @@ export const DayIndicator = styled.span`
     height: 100%;
     right: 0;
     opacity: 0.5;
-    border-radius: ${DAY_SIZE * 0.66}vw;
+    border-radius: ${MOBILE_DAY_SIZE * 0.66}vw;
     background-color: ${getColor};
     z-index: -10;
+    @media (min-width: 40em) {
+      border-radius: ${DESKTOP_DAY_SIZE * 0.66}rem;
+    }
   }
 `;
 

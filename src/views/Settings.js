@@ -4,7 +4,11 @@ import { Link } from '@reach/router';
 import Avatar from '../components/styled/Avatar';
 import { Toggle, TextButton, Button } from '../components/styled/Form';
 
-const Form = styled.div`
+const Layout = styled.div`
+  position: relative;
+`;
+
+const Form = styled.form`
   padding: 2rem;
   & > * + * {
     margin-top: 2.25rem;
@@ -56,7 +60,7 @@ const Row = styled.div`
 `;
 
 const Settings = ({ user, logout }) => (
-  <div>
+  <Layout>
     <Form>
       <h1>Settings</h1>
       <Avatar user={user} />
@@ -114,7 +118,7 @@ const Settings = ({ user, logout }) => (
         &times;
       </Link>
     </Close>
-  </div>
+  </Layout>
 );
 
 export default Settings;
