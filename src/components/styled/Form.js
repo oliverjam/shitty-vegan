@@ -7,7 +7,7 @@ const ToggleContainer = styled.label`
   align-items: center;
 `;
 
-const HiddenInput = styled.input`
+export const HiddenInput = styled.input`
   ${visuallyHidden};
 `;
 

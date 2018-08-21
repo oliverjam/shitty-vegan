@@ -1,11 +1,46 @@
 import React, { Component } from 'react';
 import styled from 'react-emotion/macro';
 import { ArrowContainer } from 'react-tiny-popover';
+import { HiddenInput } from './styled/Form';
 
 const Form = styled.form`
-  padding: 1rem;
+  padding: 1.75rem;
   background-color: #fff;
+  border-radius: 1rem;
+  & > * + * {
+    margin-top: 0.5rem;
+  }
+  box-shadow: 0 1px 4px hsla(200, 10%, 40%, 0.5);
 `;
+
+const RadioLabel = styled.label`
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  background-color: hsl(200, 10%, 96%);
+  ${HiddenInput}:checked ~ & {
+    background-color: ${p => p.theme.ratings[p.rating]};
+  }
+`;
+
+const Radio = ({ id, value, setRating, rating, ...rest }) => (
+  <div>
+    <HiddenInput
+      onChange={setRating}
+      type="radio"
+      id={id}
+      name="rating"
+      value={value}
+      defaultChecked={rating === value}
+      {...rest}
+    />
+    <RadioLabel htmlFor={id} rating={value}>
+      {id}
+    </RadioLabel>
+  </div>
+);
 
 class SelectRating extends Component {
   render() {
@@ -28,50 +63,21 @@ class SelectRating extends Component {
         arrowStyle={{ opacity: 1 }}
       >
         <Form>
-          <div>
-            <label htmlFor="meat">Meat</label>
-            <input
-              onChange={setRating}
-              type="radio"
-              id="meat"
-              name="rating"
-              value={1}
-              defaultChecked={rating === 1}
-            />
-          </div>
-          <div>
-            <label htmlFor="vegetarian">Vegetarian</label>
-            <input
-              onChange={setRating}
-              type="radio"
-              id="vegetarian"
-              name="rating"
-              value={2}
-              defaultChecked={rating === 2}
-            />
-          </div>
-          <div>
-            <label htmlFor="ovo-vegan">Ovo-vegan</label>
-            <input
-              onChange={setRating}
-              type="radio"
-              id="ovo-vegan"
-              name="rating"
-              value={3}
-              defaultChecked={rating === 3}
-            />
-          </div>
-          <div>
-            <label htmlFor="vegan">Vegan</label>
-            <input
-              onChange={setRating}
-              type="radio"
-              id="vegan"
-              name="rating"
-              value={4}
-              defaultChecked={rating === 4}
-            />
-          </div>
+          <h3>How'd you go?</h3>
+          <Radio onChange={setRating} rating={rating} id="vegan" value={4} />
+          <Radio
+            onChange={setRating}
+            rating={rating}
+            id="ovo-vegetarian"
+            value={3}
+          />
+          <Radio
+            onChange={setRating}
+            rating={rating}
+            id="vegetarian"
+            value={2}
+          />
+          <Radio onChange={setRating} rating={rating} id="meat" value={1} />
         </Form>
       </ArrowContainer>
     );
