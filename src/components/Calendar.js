@@ -84,6 +84,8 @@ class Calendar extends Component {
                     onClickOutside={() => this.setState({ selectedDate: null })}
                     content={({ position, targetRect, popoverRect }) => (
                       <SelectRating
+                        ratings={ratings}
+                        date={day.fullDate}
                         setRating={this.setRating}
                         position={position}
                         targetRect={targetRect}

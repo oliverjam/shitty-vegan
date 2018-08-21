@@ -9,9 +9,17 @@ const Form = styled.form`
 
 class SelectRating extends Component {
   render() {
-    const { setRating, position, targetRect, popoverRect } = this.props;
+    const {
+      date,
+      ratings,
+      setRating,
+      position,
+      targetRect,
+      popoverRect,
+    } = this.props;
+    const rating = ratings[date] ? ratings[date].rating : 0;
     return (
-      <ArrowContainer // if you'd like an arrow, you can import the ArrowContainer!
+      <ArrowContainer
         position={position}
         targetRect={targetRect}
         popoverRect={popoverRect}
@@ -28,6 +36,7 @@ class SelectRating extends Component {
               id="meat"
               name="rating"
               value={1}
+              defaultChecked={rating === 1}
             />
           </div>
           <div>
@@ -38,6 +47,7 @@ class SelectRating extends Component {
               id="vegetarian"
               name="rating"
               value={2}
+              defaultChecked={rating === 2}
             />
           </div>
           <div>
@@ -48,6 +58,7 @@ class SelectRating extends Component {
               id="ovo-vegan"
               name="rating"
               value={3}
+              defaultChecked={rating === 3}
             />
           </div>
           <div>
@@ -58,6 +69,7 @@ class SelectRating extends Component {
               id="vegan"
               name="rating"
               value={4}
+              defaultChecked={rating === 4}
             />
           </div>
         </Form>
