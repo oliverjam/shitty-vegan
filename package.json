@@ -8,10 +8,10 @@
     "emotion-theming": "^9.2.6",
     "netlify-identity-widget": "^1.4.14",
     "netlify-lambda": "^0.4.0",
-    "polished": "^1.9.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-emotion": "^9.2.6",
+    "react-pose": "^3.0.2",
     "react-scripts": "^2.0.0-next.3e165448",
     "react-tiny-popover": "^3.4.2",
     "react-values": "^0.2.4"

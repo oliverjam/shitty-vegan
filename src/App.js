@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'react-emotion/macro';
 import { ThemeProvider } from 'emotion-theming';
-import { Router } from '@reach/router';
+import { Router, Location } from '@reach/router';
+import posed, { PoseGroup } from 'react-pose';
 import netlifyIdentity from 'netlify-identity-widget';
 import { Provider as SettingsProvider } from './state/settings';
 import theme from './styles/theme';
 import Login from './views/Login';
+import GetStarted from './views/GetStarted';
 import Home from './views/Home';
 import Settings from './views/Settings';
 import NotFound from './views/NotFound';
@@ -16,6 +18,11 @@ const Layout = styled.div`
   margin: 0 auto;
 `;
 
+const Routes = posed.div({
+  enter: { opacity: 1 },
+  exit: { opacity: 0 },
+});
+
 class App extends Component {
   state = {
     user: null,
@@ -25,7 +32,11 @@ class App extends Component {
     netlifyIdentity.init();
     const user = netlifyIdentity.currentUser();
     if (user) this.setState({ user });
-    netlifyIdentity.on('login', user => this.setState({ user }));
+    netlifyIdentity.on('login', user =>
+      this.setState({ user }, () => {
+        netlifyIdentity.close();
+      })
+    );
     netlifyIdentity.on('logout', user => {
       netlifyIdentity.close();
       this.setState({ user: null });
@@ -46,39 +57,44 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <SettingsProvider>
           <Layout>
-            <Router>
-              {!user ? (
-                <Login path="/*" login={this.login} />
-              ) : (
-                [
-                  <Home path="/" user={user} key="home" />,
-                  <Settings
-                    path="settings"
-                    logout={this.logout}
-                    user={user}
-                    key="settings"
-                  />,
-                  <NotFound default key="404" />,
-                ]
+            <Location>
+              {({ location }) => (
+                <PoseGroup>
+                  <Routes key={location.key}>
+                    <Router location={location}>
+                      {!user
+                        ? [
+                            <Login path="/*" login={this.login} key="login" />,
+                            <GetStarted
+                              path="/get-started"
+                              key="get-started"
+                            />,
+                          ]
+                        : [
+                            <Home
+                              path="/"
+                              user={user}
+                              key="home"
+                              netlifyIdentity={netlifyIdentity}
+                            />,
+                            <Settings
+                              path="settings"
+                              logout={this.logout}
+                              user={user}
+                              key="settings"
+                            />,
+                            <NotFound default key="404" />,
+                          ]}
+                    </Router>
+                  </Routes>
+                </PoseGroup>
               )}
-            </Router>
+            </Location>
           </Layout>
         </SettingsProvider>
       </ThemeProvider>
     );
   }
-  // getHeaders = () => {
-  //   const headers = { 'Content-Type': 'application/json' };
-  //   if (netlifyIdentity.currentUser()) {
-  //     return netlifyIdentity
-  //       .currentUser()
-  //       .jwt()
-  //       .then(token => {
-  //         console.log({ ...headers, Authorization: `Bearer ${token}` });
-  //         return { ...headers, Authorization: `Bearer ${token}` };
-  //       });
-  //   }
-  // };
 }
 
 export default App;
