@@ -13,12 +13,16 @@ export const visuallyHidden = css`
 `;
 
 export const buttonReset = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0.5em 0.75em;
   border: none;
   background: none;
   color: inherit;
   font-family: inherit;
   font-size: inherit;
+  text-align: center;
   cursor: pointer;
   &:focus {
     outline: none;
