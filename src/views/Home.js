@@ -36,6 +36,20 @@ class Home extends Component {
     });
   };
 
+  getHeaders = () => {
+    const { netlifyIdentity } = this.props;
+    const headers = { 'Content-Type': 'application/json' };
+    if (netlifyIdentity.currentUser()) {
+      return netlifyIdentity
+        .currentUser()
+        .jwt()
+        .then(token => {
+          console.log({ ...headers, Authorization: `Bearer ${token}` });
+          return { ...headers, Authorization: `Bearer ${token}` };
+        });
+    }
+  };
+
   render() {
     const { today, ratings } = this.state;
     // const { user } = this.props;

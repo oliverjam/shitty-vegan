@@ -1,11 +1,9 @@
-import { hsl } from 'polished';
-
 const palette = {
-  green: hsl(110, 0.6, 0.55),
-  grellow: hsl(75, 0.6, 0.55),
-  orange: hsl(40, 0.6, 0.55),
-  red: hsl(20, 0.6, 0.55),
-  blue: hsl(220, 0.4, 0.6),
+  green: '#2CC938',
+  grellow: '#D4D641',
+  orange: '#E7B417',
+  red: '#CC3333',
+  blue: 'hsl(220, 40%, 60%)',
 
   charcoal: '#555',
   cream: '#f8f8f8',

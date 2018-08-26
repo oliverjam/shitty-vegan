@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from '@reach/router';
 import styled from 'react-emotion/macro';
 import { Sugarplum } from '../components/icons';
 import { buttonReset } from '../components/styled/utils';
@@ -9,15 +8,10 @@ const Layout = styled.div`
   min-height: 100vh;
   padding: 1.5rem;
   display: grid;
-  grid-template-rows: 1fr auto auto;
-  grid-gap: 1rem;
-  align-items: center;
-`;
-
-const TitleWrapper = styled.div`
-  display: grid;
   justify-items: center;
+  align-content: center;
   grid-gap: 0.5rem;
+  text-align: center;
 `;
 
 const Title = styled.h1`
@@ -25,11 +19,7 @@ const Title = styled.h1`
   font-weight: 400;
 `;
 
-const Subtitle = styled.div`
-  text-transform: uppercase;
-`;
-
-const LinkButton = styled(Link)`
+const Button = styled.button`
   ${buttonReset};
   height: 3rem;
   border-radius: 2rem;
@@ -38,23 +28,14 @@ const LinkButton = styled(Link)`
   background-color: #fff;
 `;
 
-const TextButton = styled.button`
-  ${buttonReset};
-`;
-
 class Login extends React.Component {
   render() {
     return (
       <Layout>
-        <TitleWrapper>
-          <Sugarplum />
-          <Title>Shitty Vegan</Title>
-          <Subtitle>The world's harshest critic</Subtitle>
-        </TitleWrapper>
-        <LinkButton to="/get-started">Get started</LinkButton>
-        <TextButton onClick={this.props.login}>
-          Already registered? Log in
-        </TextButton>
+        <Sugarplum />
+        <Title>Welcome to Shitty Vegan</Title>
+        <p>Helps keep track of how much of a piece of shit you are!</p>
+        <Button onClick={this.props.login}>Get started</Button>
       </Layout>
     );
   }
