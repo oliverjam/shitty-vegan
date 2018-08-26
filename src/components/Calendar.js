@@ -10,7 +10,7 @@ import {
   NavBar,
   Button,
 } from './styled/Calendar';
-import { Broccoli, Menu, Left, Right } from './icons';
+import { Sugarplum, Menu, Left, Right } from './icons';
 import SelectRating from './SelectRating';
 
 const getDaysInMonth = (year, month) => {
@@ -52,7 +52,7 @@ class Calendar extends Component {
           return (
             <Section key={monthName}>
               <NavBar>
-                <Broccoli />
+                <Sugarplum width="24" />
                 <Button onClick={() => decrementMonth(1)}>
                   <Left />
                 </Button>
