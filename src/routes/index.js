@@ -13,6 +13,8 @@ const RouteTransitions = posed.div({
   exit: { opacity: 0 },
 });
 
+const Loading = () => null;
+
 function Routes() {
   const identity = useIdentity();
   return (
@@ -21,16 +23,20 @@ function Routes() {
         <PoseGroup>
           <RouteTransitions key={location.key}>
             <Router location={location}>
-              {identity.state !== "loggedIn"
-                ? [
-                    <Login path="/*" key="login" />,
-                    <GetStarted path="/get-started" key="get-started" />,
-                  ]
-                : [
-                    <Home path="/" key="home" />,
-                    <Settings path="settings" key="settings" />,
-                    <NotFound default key="404" />,
-                  ]}
+              {identity.state === "loading" ? (
+                <Loading path="/*" />
+              ) : identity.state === "loggedIn" ? (
+                [
+                  <Home path="/" key="home" />,
+                  <Settings path="settings" key="settings" />,
+                  <NotFound default key="404" />,
+                ]
+              ) : (
+                [
+                  <Login path="/*" key="login" />,
+                  <GetStarted path="/get-started" key="get-started" />,
+                ]
+              )}
             </Router>
           </RouteTransitions>
         </PoseGroup>
