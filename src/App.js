@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled/macro";
 import { ThemeProvider } from "emotion-theming";
 import { IdentityProvider } from "./state/identity";
-import GlobalStyles from "./styles/Global";
+import GlobalStyles from "./styles/GlobalStyles";
 import { Provider as SettingsProvider } from "./state/settings";
 import theme from "./styles/theme";
 import Routes from "./routes";
