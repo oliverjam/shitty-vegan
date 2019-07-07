@@ -1,5 +1,5 @@
-import styled from '@emotion/styled/macro';
-import { buttonReset } from './utils';
+import styled from "@emotion/styled/macro";
+import { buttonReset } from "./utils";
 
 const COLUMN_COUNT = 7;
 const MOBILE_DAY_SIZE = 100 / COLUMN_COUNT; // 7 columns in 100vw window
@@ -26,7 +26,7 @@ export const Day = styled.button`
   padding: 0;
   display: flex;
   justify-content: center;
-  grid-column: ${({ firstDay }) => (firstDay ? `${firstDay}` : 'initial')};
+  grid-column: ${({ firstDay }) => (firstDay ? `${firstDay}` : "initial")};
   &:focus > span {
     border: 1px dashed blue;
   }
@@ -39,7 +39,7 @@ export const DayIndicator = styled.span`
   display: grid;
   place-items: center;
   border-radius: 50%;
-  color: ${p => (p.rating > 0 ? 'white' : 'inherit')};
+  color: ${p => (p.rating > 0 ? "white" : "inherit")};
   @media (min-width: 40em) {
     width: ${DESKTOP_DAY_SIZE * 0.66}rem;
     height: ${DESKTOP_DAY_SIZE * 0.66}rem;
@@ -48,13 +48,13 @@ export const DayIndicator = styled.span`
   &&& {
     background-color: ${getColor};
   }
-  &[aria-current='date'] {
+  &[aria-current="date"] {
     background-color: hsl(200, 10%, 80%);
     box-shadow: inset 0 0 5px 3px hsla(200, 10%, 50%, 0.4);
   }
   &::before {
-    content: '';
-    display: ${p => (p.showStreak ? 'block' : 'none')};
+    content: "";
+    display: ${p => (p.showStreak ? "block" : "none")};
     position: absolute;
     width: 250%;
     height: 100%;

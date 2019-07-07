@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   LogForm,
   LogWrapper,
@@ -6,27 +6,22 @@ import {
   LogToggleGroup,
   LogToggle,
   LogLabel,
-} from './styled/LogForm';
+} from "./styled/LogForm";
 
 function Log({ user }) {
   return (
     <LogForm>
       <LogWrapper>
-        <LogTitle>
-          Howd you go today {user.name}?
-        </LogTitle>
+        <LogTitle>Howd you go today {user.name}?</LogTitle>
         <LogToggleGroup>
-          {user.targets.map((label, i) =>
+          {user.targets.map((label, i) => (
             <LogToggle key={i}>
               <input id={"toggle-" + i} type="radio" name="log" />
-              <LogLabel
-                htmlFor={"toggle-" + i}
-                rating={i}
-              >
+              <LogLabel htmlFor={"toggle-" + i} rating={i}>
                 {label}
               </LogLabel>
             </LogToggle>
-          )}
+          ))}
         </LogToggleGroup>
       </LogWrapper>
     </LogForm>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export const Menu = ({ props }) => (
   <svg
@@ -83,7 +83,7 @@ export const Broccoli = ({ props }) => (
   </svg>
 );
 
-export const Sugarplum = ({ width = '80', height, rest }) => (
+export const Sugarplum = ({ width = "80", height, rest }) => (
   <svg viewBox="0 0 80 114" width={width} height={height} {...rest}>
     <defs>
       <path

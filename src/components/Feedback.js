@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import styled from '@emotion/styled/macro';
-import Level from './Level';
-import Streak from './Streak';
+import React, { Component } from "react";
+import styled from "@emotion/styled/macro";
+import Level from "./Level";
+import Streak from "./Streak";
 
 const Container = styled.div`
   display: grid;
@@ -18,10 +18,10 @@ const Message = styled.p`
 `;
 
 const messages = [
-  ['Hurry up and fill something in'],
-  ["You're a piece of shit", 'Stop getting drunk and binging on wings'],
+  ["Hurry up and fill something in"],
+  ["You're a piece of shit", "Stop getting drunk and binging on wings"],
   ["That's progress at least"],
-  ['Milk is disgusting', 'How do you like your eggs in the morning?'],
+  ["Milk is disgusting", "How do you like your eggs in the morning?"],
   ["You're doing great sweetie"],
 ];
 

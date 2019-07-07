@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from '@reach/router';
-import styled from '@emotion/styled/macro';
-import { Button } from '../components/styled/Form';
+import React from "react";
+import { Link } from "@reach/router";
+import styled from "@emotion/styled/macro";
+import { Button } from "../components/styled/Form";
 
 const Layout = styled.div`
   max-width: 30rem;

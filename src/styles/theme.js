@@ -1,12 +1,12 @@
 const palette = {
-  green: '#2CC938',
-  grellow: '#D4D641',
-  orange: '#E7B417',
-  red: '#CC3333',
-  blue: 'hsl(220, 40%, 60%)',
+  green: "#2CC938",
+  grellow: "#D4D641",
+  orange: "#E7B417",
+  red: "#CC3333",
+  blue: "hsl(220, 40%, 60%)",
 
-  charcoal: '#555',
-  cream: '#f8f8f8',
+  charcoal: "#555",
+  cream: "#f8f8f8",
 };
 
 export default {
@@ -15,7 +15,7 @@ export default {
   ok: palette.orange,
   bad: palette.red,
   ratings: [
-    'transparent',
+    "transparent",
     palette.red,
     palette.orange,
     palette.grellow,
@@ -29,8 +29,8 @@ export default {
   bgLight: palette.cream,
   bgDark: palette.charcoal,
 
-  spaceS: '0.75rem',
-  spaceM: '1rem',
-  spaceL: '2rem',
-  spaceXL: '4rem',
+  spaceS: "0.75rem",
+  spaceM: "1rem",
+  spaceL: "2rem",
+  spaceXL: "4rem",
 };

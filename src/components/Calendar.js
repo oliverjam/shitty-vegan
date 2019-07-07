@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Link } from '@reach/router';
-import { DateValue } from 'react-values';
-import Popover from 'react-tiny-popover';
+import React, { Component } from "react";
+import { Link } from "@reach/router";
+import { DateValue } from "react-values";
+import Popover from "react-tiny-popover";
 import {
   Section,
   SectionTitle,
@@ -9,9 +9,9 @@ import {
   DayIndicator,
   NavBar,
   Button,
-} from './styled/Calendar';
-import { Sugarplum, Menu, Left, Right } from './icons';
-import SelectRating from './SelectRating';
+} from "./styled/Calendar";
+import { Sugarplum, Menu, Left, Right } from "./icons";
+import SelectRating from "./SelectRating";
 
 const getDaysInMonth = (year, month) => {
   const length = new Date(year, month + 1, 0).getDate();
@@ -45,8 +45,8 @@ class Calendar extends Component {
       <DateValue>
         {({ value, year, month, date, incrementMonth, decrementMonth }) => {
           const days = getDaysInMonth(year, month);
-          const monthName = value.toLocaleDateString('en-GB', {
-            month: 'long',
+          const monthName = value.toLocaleDateString("en-GB", {
+            month: "long",
           });
           const firstDay = new Date(year, month).getDay();
           return (
@@ -80,7 +80,7 @@ class Calendar extends Component {
                   <Popover
                     key={i}
                     isOpen={selectedDate === day.fullDate}
-                    position={'bottom'}
+                    position={"bottom"}
                     onClickOutside={() => this.setState({ selectedDate: null })}
                     content={({ position, targetRect, popoverRect }) => (
                       <SelectRating
@@ -101,7 +101,7 @@ class Calendar extends Component {
                       <DayIndicator
                         rating={rating}
                         showStreak={showStreak}
-                        aria-current={day.fullDate === today ? 'date' : null}
+                        aria-current={day.fullDate === today ? "date" : null}
                       >
                         {day.date}
                       </DayIndicator>

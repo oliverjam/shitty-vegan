@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from '@emotion/styled/macro';
-import { Sugarplum } from '../components/icons';
-import { buttonReset } from '../components/styled/utils';
+import React from "react";
+import styled from "@emotion/styled/macro";
+import { Sugarplum } from "../components/icons";
+import { buttonReset } from "../components/styled/utils";
 
 const Layout = styled.div`
   width: 100%;
