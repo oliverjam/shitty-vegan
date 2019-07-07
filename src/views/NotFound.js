@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
-import styled from 'react-emotion/macro';
+import styled from '@emotion/styled/macro';
 import { Button } from '../components/styled/Form';
 
 const Layout = styled.div`

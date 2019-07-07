@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'react-emotion/macro';
+import styled from '@emotion/styled/macro';
 import { Sugarplum } from '../components/icons';
 import { buttonReset } from '../components/styled/utils';
 

@@ -1,4 +1,4 @@
-import styled from 'react-emotion/macro';
+import styled from '@emotion/styled/macro';
 import { buttonReset } from './utils';
 
 const COLUMN_COUNT = 7;

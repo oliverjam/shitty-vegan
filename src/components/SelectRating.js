@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'react-emotion/macro';
+import styled from '@emotion/styled/macro';
 import { ArrowContainer } from 'react-tiny-popover';
 import { HiddenInput } from './styled/Form';
 

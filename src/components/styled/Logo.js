@@ -1,4 +1,4 @@
-// import styled from 'react-emotion/macro';
+// import styled from '@emotion/styled/macro';
 // import { Broccoli } from '../icons/Broccoli';
 //
 // export const Logo = styled(Broccoli)`

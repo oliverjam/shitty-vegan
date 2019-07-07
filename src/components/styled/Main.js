@@ -1,4 +1,4 @@
-import styled from 'react-emotion/macro';
+import styled from '@emotion/styled/macro';
 
 export const Main = styled.main`
   /* width: 100%;

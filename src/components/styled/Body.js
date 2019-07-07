@@ -1,4 +1,4 @@
-import styled from 'react-emotion/macro';
+import styled from '@emotion/styled/macro';
 
 export const Body = styled.body`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,

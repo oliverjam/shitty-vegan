@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import styled from 'react-emotion/macro';
-import Calendar from '../components/Calendar';
-import Feedback from '../components/Feedback';
+import React, { Component } from "react";
+import styled from "@emotion/styled/macro";
+import Calendar from "../components/Calendar";
+import Feedback from "../components/Feedback";
 
 const Layout = styled.div`
   width: 100%;
@@ -23,7 +23,7 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    const state = JSON.parse(window.localStorage.getItem('shitty-ratings'));
+    const state = JSON.parse(window.localStorage.getItem("shitty-ratings"));
     if (state) return this.setState(state);
   }
 
@@ -32,13 +32,13 @@ class Home extends Component {
     const { ratings } = this.state;
     const newRatings = { ...ratings, [selectedDate]: { rating } };
     this.setState({ ratings: newRatings }, () => {
-      window.localStorage.setItem('shitty-ratings', JSON.stringify(this.state));
+      window.localStorage.setItem("shitty-ratings", JSON.stringify(this.state));
     });
   };
 
   getHeaders = () => {
     const { netlifyIdentity } = this.props;
-    const headers = { 'Content-Type': 'application/json' };
+    const headers = { "Content-Type": "application/json" };
     if (netlifyIdentity.currentUser()) {
       return netlifyIdentity
         .currentUser()
@@ -63,17 +63,17 @@ class Home extends Component {
         />
         <Feedback today={today} ratings={ratings} />
         {/* <button
-          onClick={() =>
-            this.getHeaders().then(headers =>
-              fetch('/.netlify/functions/hello', {
-                headers,
-                method: 'POST',
-                body: { test: 'test' },
+          onClick={() => {
+            this.props.netlifyIdentity.gotrue
+              .currentUser()
+              .update({
+                data: {
+                  test: "what the fuuu",
+                  seriously: ["are", "you", { kidding: "me" }],
+                },
               })
-                .then(res => res.json())
-                .then(console.log)
-            )
-          }
+              .then(console.log);
+          }}
         >
           Hello
         </button> */}

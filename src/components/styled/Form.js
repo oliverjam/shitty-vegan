@@ -1,6 +1,7 @@
-import React from 'react';
-import styled, { css } from 'react-emotion/macro';
-import { visuallyHidden, buttonReset } from './utils';
+import React from "react";
+import styled from "@emotion/styled/macro";
+import css from "@emotion/css/macro";
+import { visuallyHidden, buttonReset } from "./utils";
 
 const ToggleContainer = styled.label`
   display: grid;

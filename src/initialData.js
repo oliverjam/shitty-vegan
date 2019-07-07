@@ -1,7 +1,7 @@
 export default {
-  '2018': [
+  "2018": [
     {
-      name: 'January',
+      name: "January",
       firstDay: 2,
       days: [
         {
@@ -131,7 +131,7 @@ export default {
       ],
     },
     {
-      name: 'February',
+      name: "February",
       firstDay: 3,
       days: [
         {
@@ -249,7 +249,7 @@ export default {
       ],
     },
     {
-      name: 'March',
+      name: "March",
       firstDay: 4,
       days: [
         {
@@ -379,7 +379,7 @@ export default {
       ],
     },
     {
-      name: 'April',
+      name: "April",
       firstDay: 1,
       days: [
         {
@@ -505,7 +505,7 @@ export default {
       ],
     },
     {
-      name: 'May',
+      name: "May",
       firstDay: 1,
       days: [
         {
@@ -635,7 +635,7 @@ export default {
       ],
     },
     {
-      name: 'June',
+      name: "June",
       firstDay: 6,
       days: [
         {
@@ -761,7 +761,7 @@ export default {
       ],
     },
     {
-      name: 'July',
+      name: "July",
       firstDay: 1,
       days: [
         {
@@ -891,7 +891,7 @@ export default {
       ],
     },
     {
-      name: 'August',
+      name: "August",
       firstDay: 4,
       days: [
         {
@@ -1021,7 +1021,7 @@ export default {
       ],
     },
     {
-      name: 'September',
+      name: "September",
       firstDay: 7,
       days: [
         {
@@ -1147,7 +1147,7 @@ export default {
       ],
     },
     {
-      name: 'October',
+      name: "October",
       firstDay: 2,
       days: [
         {
@@ -1277,7 +1277,7 @@ export default {
       ],
     },
     {
-      name: 'November',
+      name: "November",
       firstDay: 4,
       days: [
         {
@@ -1403,7 +1403,7 @@ export default {
       ],
     },
     {
-      name: 'December',
+      name: "December",
       firstDay: 7,
       days: [
         {

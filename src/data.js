@@ -1,7 +1,7 @@
 const data = {
   months: [
     {
-      name: 'January',
+      name: "January",
       firstDay: 2,
       days: Array.from({ length: 31 }, (x, i) => ({
         rating: 0,
@@ -9,7 +9,7 @@ const data = {
       })),
     },
     {
-      name: 'February',
+      name: "February",
       firstDay: 3,
       days: Array.from({ length: 28 }, (x, i) => ({
         rating: 0,
@@ -17,7 +17,7 @@ const data = {
       })),
     },
     {
-      name: 'March',
+      name: "March",
       firstDay: 4,
       days: Array.from({ length: 31 }, (x, i) => ({
         rating: 0,
@@ -25,7 +25,7 @@ const data = {
       })),
     },
     {
-      name: 'April',
+      name: "April",
       firstDay: 1,
       days: Array.from({ length: 30 }, (x, i) => ({
         rating: 0,
@@ -33,7 +33,7 @@ const data = {
       })),
     },
     {
-      name: 'May',
+      name: "May",
       firstDay: 1,
       days: Array.from({ length: 31 }, (x, i) => ({
         rating: 0,
@@ -41,7 +41,7 @@ const data = {
       })),
     },
     {
-      name: 'June',
+      name: "June",
       firstDay: 6,
       days: Array.from({ length: 30 }, (x, i) => ({
         rating: 0,
@@ -49,7 +49,7 @@ const data = {
       })),
     },
     {
-      name: 'July',
+      name: "July",
       firstDay: 1,
       days: Array.from({ length: 31 }, (x, i) => ({
         rating: 0,
@@ -57,7 +57,7 @@ const data = {
       })),
     },
     {
-      name: 'August',
+      name: "August",
       firstDay: 4,
       days: Array.from({ length: 31 }, (x, i) => ({
         rating: 0,
@@ -65,7 +65,7 @@ const data = {
       })),
     },
     {
-      name: 'September',
+      name: "September",
       firstDay: 7,
       days: Array.from({ length: 30 }, (x, i) => ({
         rating: 0,
@@ -73,7 +73,7 @@ const data = {
       })),
     },
     {
-      name: 'October',
+      name: "October",
       firstDay: 2,
       days: Array.from({ length: 31 }, (x, i) => ({
         rating: 0,
@@ -81,7 +81,7 @@ const data = {
       })),
     },
     {
-      name: 'November',
+      name: "November",
       firstDay: 4,
       days: Array.from({ length: 30 }, (x, i) => ({
         rating: 0,
@@ -89,7 +89,7 @@ const data = {
       })),
     },
     {
-      name: 'December',
+      name: "December",
       firstDay: 7,
       days: Array.from({ length: 31 }, (x, i) => ({
         rating: 0,

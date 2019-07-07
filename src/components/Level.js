@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'react-emotion/macro';
+import styled from '@emotion/styled/macro';
 
 const Container = styled.div`
   display: grid;

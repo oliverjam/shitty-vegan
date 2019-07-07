@@ -1,4 +1,4 @@
-import styled from 'react-emotion/macro';
+import styled from '@emotion/styled/macro';
 
 export const Modal = styled.div`
   position: absolute;

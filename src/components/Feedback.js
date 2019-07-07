@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'react-emotion/macro';
+import styled from '@emotion/styled/macro';
 import Level from './Level';
 import Streak from './Streak';
 

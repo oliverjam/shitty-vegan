@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
-import styled from 'react-emotion/macro';
-import { ThemeProvider } from 'emotion-theming';
-import { Router, Location } from '@reach/router';
-import posed, { PoseGroup } from 'react-pose';
-import netlifyIdentity from 'netlify-identity-widget';
-import { Provider as SettingsProvider } from './state/settings';
-import theme from './styles/theme';
-import Login from './views/Login';
-import GetStarted from './views/GetStarted';
-import Home from './views/Home';
-import Settings from './views/Settings';
-import NotFound from './views/NotFound';
+import React, { Component } from "react";
+import styled from "@emotion/styled/macro";
+import { ThemeProvider } from "emotion-theming";
+import { Router, Location } from "@reach/router";
+import posed, { PoseGroup } from "react-pose";
+import netlifyIdentity from "netlify-identity-widget";
+import GlobalStyles from "./styles/Global";
+import { Provider as SettingsProvider } from "./state/settings";
+import theme from "./styles/theme";
+import Login from "./views/Login";
+import GetStarted from "./views/GetStarted";
+import Home from "./views/Home";
+import Settings from "./views/Settings";
+import NotFound from "./views/NotFound";
 
 // const Login = ({ login }) => <button onClick={login}>Log in</button>;
 const Layout = styled.div`
@@ -32,12 +33,12 @@ class App extends Component {
     netlifyIdentity.init();
     const user = netlifyIdentity.currentUser();
     if (user) this.setState({ user });
-    netlifyIdentity.on('login', user =>
+    netlifyIdentity.on("login", user =>
       this.setState({ user }, () => {
         netlifyIdentity.close();
       })
     );
-    netlifyIdentity.on('logout', user => {
+    netlifyIdentity.on("logout", user => {
       netlifyIdentity.close();
       this.setState({ user: null });
     });
@@ -56,6 +57,7 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <SettingsProvider>
+          <GlobalStyles />
           <Layout>
             <Location>
               {({ location }) => (

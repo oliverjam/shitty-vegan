@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'react-emotion/macro';
+import styled from '@emotion/styled/macro';
 import { Link } from '@reach/router';
 import { Store } from '../state/settings';
 import Avatar from '../components/styled/Avatar';
