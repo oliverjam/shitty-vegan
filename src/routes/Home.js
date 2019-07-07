@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "@emotion/styled/macro";
 import Calendar from "../components/Calendar";
 import Feedback from "../components/Feedback";
@@ -10,76 +10,36 @@ const Layout = styled.div`
   grid-template-rows: auto 1fr;
 `;
 
-class Home extends Component {
-  state = {
-    ratings: {},
-    today: new Date(
-      Date.UTC(
-        new Date().getFullYear(),
-        new Date().getMonth(),
-        new Date().getDate()
-      )
-    ).getTime(),
-  };
-
-  componentDidMount() {
+function Home() {
+  const [ratings, setRatings] = React.useState(() => {
     const state = JSON.parse(window.localStorage.getItem("shitty-ratings"));
-    if (state) return this.setState(state);
+    return state || {};
+  });
+
+  React.useEffect(() => {
+    window.localStorage.setItem("shitty-ratings", JSON.stringify(ratings));
+  }, [ratings]);
+
+  function setRating({ rating, selectedDate }) {
+    setRatings(r => ({ ...r, [selectedDate]: { rating } }));
   }
 
-  setRating = ({ rating, selectedDate }) => {
-    console.log({ rating, selectedDate });
-    const { ratings } = this.state;
-    const newRatings = { ...ratings, [selectedDate]: { rating } };
-    this.setState({ ratings: newRatings }, () => {
-      window.localStorage.setItem("shitty-ratings", JSON.stringify(this.state));
-    });
-  };
+  const today = new Date(
+    Date.UTC(
+      new Date().getFullYear(),
+      new Date().getMonth(),
+      new Date().getDate()
+    )
+  );
 
-  getHeaders = () => {
-    const { netlifyIdentity } = this.props;
-    const headers = { "Content-Type": "application/json" };
-    if (netlifyIdentity.currentUser()) {
-      return netlifyIdentity
-        .currentUser()
-        .jwt()
-        .then(token => {
-          console.log({ ...headers, Authorization: `Bearer ${token}` });
-          return { ...headers, Authorization: `Bearer ${token}` };
-        });
-    }
-  };
+  console.log(ratings);
 
-  render() {
-    const { today, ratings } = this.state;
-    // const { user } = this.props;
-    return (
-      <Layout>
-        <Calendar
-          today={today}
-          ratings={ratings}
-          setRating={this.setRating}
-          // setLocation={}
-        />
-        <Feedback today={today} ratings={ratings} />
-        {/* <button
-          onClick={() => {
-            this.props.netlifyIdentity.gotrue
-              .currentUser()
-              .update({
-                data: {
-                  test: "what the fuuu",
-                  seriously: ["are", "you", { kidding: "me" }],
-                },
-              })
-              .then(console.log);
-          }}
-        >
-          Hello
-        </button> */}
-      </Layout>
-    );
-  }
+  return (
+    <Layout>
+      <Calendar today={today} ratings={ratings} setRating={setRating} />
+      <Feedback today={today} ratings={ratings} />
+    </Layout>
+  );
 }
 
 export default Home;
