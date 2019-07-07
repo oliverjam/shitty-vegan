@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import styled from '@emotion/styled/macro';
-import { ArrowContainer } from 'react-tiny-popover';
-import { HiddenInput } from './styled/Form';
+import React, { Component } from "react";
+import styled from "@emotion/styled/macro";
+import { ArrowContainer } from "react-tiny-popover";
+import { HiddenInput } from "./styled/Form";
+import theme from "../styles/theme";
 
 const Form = styled.form`
   padding: 1.75rem;
@@ -21,7 +22,7 @@ const RadioLabel = styled.label`
   text-transform: uppercase;
   background-color: hsl(200, 10%, 96%);
   ${HiddenInput}:checked ~ & {
-    background-color: ${p => p.theme.ratings[p.rating]};
+    background-color: ${p => theme.ratings[p.rating]};
   }
 `;
 
@@ -58,7 +59,7 @@ class SelectRating extends Component {
         position={position}
         targetRect={targetRect}
         popoverRect={popoverRect}
-        arrowColor={'white'}
+        arrowColor="white"
         arrowSize={10}
         arrowStyle={{ opacity: 1 }}
       >
