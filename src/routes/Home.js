@@ -13,11 +13,11 @@ const Layout = styled.div`
 function Home() {
   const [ratings, setRatings] = React.useState(() => {
     const state = JSON.parse(window.localStorage.getItem("shitty-ratings"));
-    return state || {};
+    return state && state.ratings ? state.ratings : {};
   });
 
   React.useEffect(() => {
-    window.localStorage.setItem("shitty-ratings", JSON.stringify(ratings));
+    window.localStorage.setItem("shitty-ratings", JSON.stringify({ ratings }));
   }, [ratings]);
 
   function setRating({ rating, selectedDate }) {
